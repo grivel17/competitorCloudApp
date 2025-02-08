@@ -13,6 +13,8 @@ REST DOMENOWY
 - dodawnie usera 
 - odpowiedni dto 
 - serwis do obsługi zapisu
-- 
-- walidację ale dopiero w serwisie 
-- zabezpieczenie resta permisja 
+
+- [TODO] walidację ale dopiero w serwisie 
+- [TODO] zabezpieczenie resta permisja 
+
+DOMAIN MODEL 
