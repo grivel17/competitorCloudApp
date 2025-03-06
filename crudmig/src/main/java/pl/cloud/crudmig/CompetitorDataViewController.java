@@ -22,7 +22,7 @@ public class CompetitorDataViewController {
         return competitorReadOnlyService.getCompetitorById(id);
     }
 
-    @GetMapping("competitor")
+    @GetMapping("competitors")
     public Set<CompetitorViewDTO> getAllCompetitors() {
         return competitorReadOnlyService.getAllCompetitors();
     }
