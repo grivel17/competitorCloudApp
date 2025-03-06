@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/")
 public class CompetitorDataViewController {
@@ -16,7 +18,12 @@ public class CompetitorDataViewController {
     }
 
     @GetMapping("competitor/{id}")
-    public ResponseEntity<CompetitorViewDTO> getCompetitorByIdRest(@PathVariable long id) {
-        return competitorReadOnlyService.getCompetitorResponseById(id);
+    public ResponseEntity<CompetitorViewDTO> getCompetitorById(@PathVariable long id) {
+        return competitorReadOnlyService.getCompetitorById(id);
+    }
+
+    @GetMapping("competitor")
+    public Set<CompetitorViewDTO> getAllCompetitors() {
+        return competitorReadOnlyService.getAllCompetitors();
     }
 }
