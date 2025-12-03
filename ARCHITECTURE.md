@@ -284,9 +284,11 @@ CREATE TABLE price_history (
     product_id BIGINT REFERENCES products(id),
     price DECIMAL(10, 2) NOT NULL,
     currency VARCHAR(10) NOT NULL,
-    recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_product_date (product_id, recorded_at)
+    recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Index for price history queries
+CREATE INDEX idx_product_date ON price_history (product_id, recorded_at);
 
 -- Alerts table
 CREATE TABLE alerts (
