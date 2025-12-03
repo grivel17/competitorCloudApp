@@ -29,4 +29,36 @@ public class Competitor extends BaseEntity {
         this.status = CompetitorStatus.NEW.toString();
         this.competitorClubId = null;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Long getCompetitorClubId() {
+        return competitorClubId;
+    }
+
+    public void setCompetitorClubId(Long competitorClubId) {
+        this.competitorClubId = competitorClubId;
+    }
 }
