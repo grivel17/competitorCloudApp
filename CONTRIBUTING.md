@@ -121,7 +121,7 @@ public class UserService{
   private static final int MAX_RETRY=3;
   
   public User findUser(Long id){
-    if(id==null) throw new IllegalArgumentException("ID cannot be null");
+    if(id==null)throw new IllegalArgumentException("ID cannot be null");
     return userRepository.findById(id).orElseThrow(()->new UserNotFoundException(id));
   }
 }
