@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class CrudmigApplication {
     private static final Logger loggerInfo = LoggerFactory.getLogger(CrudmigApplication.class);
-    private static final String MY_PASSWORD = "tom";
 
     public static void main(String[] args) {
         SpringApplication.run(CrudmigApplication.class, args);
@@ -18,6 +17,6 @@ public class CrudmigApplication {
 
     }
     private static void serverRunInfo() {
-        loggerInfo.info("Password correct. Server run and ready");
+        loggerInfo.info("Server run and ready");
     }
 }

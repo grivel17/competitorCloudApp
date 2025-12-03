@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 
 @Service
-//@Transactional
 public class CompetitorServiceImpl implements CompetitorService {
 
     private final CompetitorMockData competitorMockData;
