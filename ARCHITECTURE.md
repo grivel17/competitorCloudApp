@@ -254,6 +254,19 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Note: updated_at should be automatically updated via trigger or application code
+-- Example trigger for automatic updated_at:
+-- CREATE OR REPLACE FUNCTION update_updated_at_column()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     NEW.updated_at = CURRENT_TIMESTAMP;
+--     RETURN NEW;
+-- END;
+-- $$ language 'plpgsql';
+--
+-- CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+--     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
 -- Competitors table
 CREATE TABLE competitors (
     id BIGSERIAL PRIMARY KEY,
@@ -518,5 +531,5 @@ Ta architektura jest propozycją dla projektu w początkowej fazie. Może być d
 ---
 
 **Wersja:** 1.0  
-**Data:** 2025-12-03  
+**Data:** 2024-12-03  
 **Status:** Proposal
