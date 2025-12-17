@@ -3,6 +3,7 @@ package pl.cloud.crudmig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.cloud.crudmig.error.ExceptionFactory;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,21 +25,24 @@ public class CompetitorServiceImpl implements CompetitorService {
     @Override
     public void createCompetitor(CompetitorDTO competitorDTO) {
         competitorValidator.validateCompetitor(competitorDTO);
-        loggerInfo.info("Metoda została wywołana! " + "Name " + competitorDTO.getName() + " Klub " + competitorDTO.getClubName());
+        loggerInfo.info("Metoda została wywołana! Name {} Klub {}", competitorDTO.getName(), competitorDTO.getClubName());
     }
 
     @Override
     public void removeCompetitorsByIds(Set<Long> competitorIds) {
-        if (!allCompetitorsToRemoveExist(competitorIds)) {
-            throw new CompetitorNotFoundException("Nie możemy skasować nieisniejącego zawodnika");
-        }
-        loggerInfo.info("Udało się skasować zawodników o numerach: " + competitorIds.stream().map(String::valueOf).collect(Collectors.joining(", ")));
-    }
-
-    private boolean allCompetitorsToRemoveExist(Set<Long> competitorIds) {
-        return CompetitorMockData.findAllCompetitors().stream()
+        Set<Long> existingIds = CompetitorMockData.findAllCompetitors().stream()
                 .map(CompetitorViewDTO::getId)
-                .collect(Collectors.toSet())
-                .containsAll(competitorIds);
+                .collect(Collectors.toSet());
+        
+        Set<Long> nonExistingIds = competitorIds.stream()
+                .filter(id -> !existingIds.contains(id))
+                .collect(Collectors.toSet());
+        
+        if (!nonExistingIds.isEmpty()) {
+            throw ExceptionFactory.competitorsNotFound(nonExistingIds);
+        }
+        
+        loggerInfo.info("Udało się skasować zawodników o numerach: {}", 
+            competitorIds.stream().map(String::valueOf).collect(Collectors.joining(", ")));
     }
 }
