@@ -3,6 +3,7 @@ package pl.cloud.crudmig;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import pl.cloud.crudmig.error.ExceptionFactory;
 
 import java.util.Optional;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class CompetitorReadOnlyServiceImpl implements CompetitorReadOnlyService 
         if (competitorViewDTO.isPresent()) {
             return new ResponseEntity<>(competitorViewDTO.get(), HttpStatus.OK);
         } else {
-            throw new CompetitorNotFoundException("W naszej bazie nie istnieje zawodnik o podanym numerze");
+            throw ExceptionFactory.competitorNotFound(id);
         }
     }
 

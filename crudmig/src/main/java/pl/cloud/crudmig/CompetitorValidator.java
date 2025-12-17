@@ -1,5 +1,5 @@
 package pl.cloud.crudmig;
 
 public interface CompetitorValidator {
-    void validateCompetitor(CompetitorDTO competitorDTO) throws InvalidCompetitorException;
+    void validateCompetitor(CompetitorDTO competitorDTO);
 }
